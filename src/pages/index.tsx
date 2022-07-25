@@ -3,6 +3,7 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import styles from './components/index.module.css'
 
 const Home: NextPage = () => {
   type RasasDataResponse = {
@@ -154,21 +155,30 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div>
-        {prefectures.map((prefecture) => (
-          <>
-            <input
-              type="checkbox"
-              value={prefecture.prefCode}
-              onChange={getAxiosPrefecturesPopulation}
-            />
-            <label htmlFor={prefecture.prefName}>{prefecture.prefName}</label>
-            <br />
-          </>
-        ))}
-      </div>
-      <div>
-        <HighchartsReact highcharts={Highcharts} options={options} />
+      <div className={styles.center}>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.pad}>
+              <h1 className={styles.title}>各都道府県における総人口推移</h1>
+              <span>都道府県</span>
+              <div className={styles.flex}>
+                {prefectures.map((prefecture) => (
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={prefecture.prefCode}
+                      onChange={getAxiosPrefecturesPopulation}
+                    />
+                    {prefecture.prefName}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <HighchartsReact highcharts={Highcharts} options={options} />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
