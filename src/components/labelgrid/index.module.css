@@ -1,0 +1,14 @@
+@media (min-width: 500px) {
+  .labelgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+    padding: 10px;
+  }
+}
+.labelgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(83px, 1fr));
+  gap: 2px;
+  padding: 5px;
+}

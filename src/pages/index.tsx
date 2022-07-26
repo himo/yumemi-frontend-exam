@@ -1,37 +1,32 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import type { NextPage } from 'next'
-import styles from '@/components/index.module.css'
 import { usePrefectureCharthooks } from '@/components/peges/hooks'
+import { Center } from '@/components/center'
+import { Card } from '@/components/card'
+import { Padding } from '@/components/padding'
+import { RenderPrefecture } from '@/components/renderprefecture'
 const Home: NextPage = () => {
   const { prefectures, getAxiosPrefecturesPopulation, options } = usePrefectureCharthooks()
   return (
     <>
-      <div className={styles.center}>
-        <div className={styles.card}>
+      <Center>
+        <Card>
           <div>
-            <div className={styles.pad}>
-              <h1 className={styles.title}>各都道府県における総人口推移</h1>
+            <Padding>
+              <h1>各都道府県における総人口推移</h1>
               <span>都道府県</span>
-              <div className={styles.flex}>
-                {prefectures.map((prefecture) => (
-                  <label>
-                    <input
-                      type="checkbox"
-                      value={prefecture.prefCode}
-                      onChange={getAxiosPrefecturesPopulation}
-                    />
-                    {prefecture.prefName}
-                  </label>
-                ))}
-              </div>
-            </div>
-            <div>
+              <RenderPrefecture
+                prefectures={prefectures}
+                changefunc={getAxiosPrefecturesPopulation}
+              />
+            </Padding>
+            <Padding>
               <HighchartsReact highcharts={Highcharts} options={options} />
-            </div>
+            </Padding>
           </div>
-        </div>
-      </div>
+        </Card>
+      </Center>
     </>
   )
 }
