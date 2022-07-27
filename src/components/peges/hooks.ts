@@ -51,14 +51,14 @@ export const usePrefectureCharthooks = () => {
     const x_AxisYears = prefectures.find((x) => x.data)?.data?.map((x) => x.year) ?? []
     setY_AxisYears(x_AxisYears)
 
-    const chartIntoValue = prefectures
-      .filter((x) => x.selected)
-      .map(
-        (x: PrefecturesData): SeriesHighcharts => ({
-          name: x.prefName,
-          data: x.data?.map((x) => x.value) ?? [],
-        }),
-      )
+    const chartIntoValue = prefectures.map(
+      (x: PrefecturesData): SeriesHighcharts => ({
+        name: x.prefName,
+        data: x.data?.map((x) => x.value) ?? [],
+        visible: x.selected ? true : false,
+        showInLegend: x.selected ? true : false,
+      }),
+    )
     setValuesForHighcharts(chartIntoValue)
   }
 

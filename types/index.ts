@@ -8,6 +8,8 @@ export type RasasDataResponse = {
 export type SeriesHighcharts = {
   name: string
   data: number[]
+  visible: boolean
+  showInLegend: boolean
 }
 
 export type PrefecturesData = {
