@@ -16,3 +16,8 @@ export type PrefecturesData = {
   selected?: boolean
   data?: { year: number; value: number }[]
 }
+
+export type prefectureAPIResponse = {
+  message: string
+  result: any
+}
