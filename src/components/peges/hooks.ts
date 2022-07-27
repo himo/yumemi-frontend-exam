@@ -1,11 +1,13 @@
 import axios, { AxiosResponse } from 'axios'
-import { useEffect, useState } from 'react'
+import HighchartsReact from 'highcharts-react-official'
+import { useEffect, useRef, useState } from 'react'
 import { SeriesHighcharts, PrefecturesData, prefectureAPIResponse } from '~/types'
 
 export const usePrefectureCharthooks = () => {
   const [prefectures, setPrefectures] = useState<PrefecturesData[]>([])
   const [valuesForHighcharts, setValuesForHighcharts] = useState<SeriesHighcharts[]>([])
-  const [y_AxisYears, setY_AxisYears] = useState<number[]>([])
+  const [x_AxisYears, setX_AxisYears] = useState<number[]>([])
+  const chartRef = useRef<HighchartsReact.RefObject>(null)
 
   useEffect(() => {
     const getAxiosPrefecturesData = async () => {
@@ -22,6 +24,7 @@ export const usePrefectureCharthooks = () => {
   const getAxiosPrefecturesPopulation = async (
     e: React.ChangeEvent<HTMLInputElement>,
   ): Promise<void> => {
+    chartRef.current?.chart.showLoading()
     const updatedPrefectures = await Promise.all(
       prefectures.map(async (x) => {
         if (e.currentTarget.value === String(x.prefCode)) {
@@ -49,7 +52,7 @@ export const usePrefectureCharthooks = () => {
 
   const renderHighCharts = () => {
     const x_AxisYears = prefectures.find((x) => x.data)?.data?.map((x) => x.year) ?? []
-    setY_AxisYears(x_AxisYears)
+    setX_AxisYears(x_AxisYears)
 
     const chartIntoValue = prefectures.map(
       (x: PrefecturesData): SeriesHighcharts => ({
@@ -60,6 +63,7 @@ export const usePrefectureCharthooks = () => {
       }),
     )
     setValuesForHighcharts(chartIntoValue)
+    chartRef.current?.chart.hideLoading()
   }
 
   const options = {
@@ -72,9 +76,9 @@ export const usePrefectureCharthooks = () => {
     },
 
     xAxis: {
-      categories: y_AxisYears,
+      categories: x_AxisYears,
       title: {
-        text: '年',
+        text: '年度',
       },
     },
 
@@ -112,5 +116,6 @@ export const usePrefectureCharthooks = () => {
     prefectures,
     getAxiosPrefecturesPopulation,
     options,
+    chartRef,
   }
 }

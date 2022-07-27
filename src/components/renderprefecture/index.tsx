@@ -10,14 +10,20 @@ type RenderPrefectureProps = {
 
 export const RenderPrefecture: FC<RenderPrefectureProps> = (props) => {
   return (
-    <LabelGrid>
-      {props.prefectures.map((prefecture) => (
-        <CheckboxWithLabel
-          prefCode={prefecture.prefCode}
-          changefunc={props.changefunc}
-          prefName={prefecture.prefName}
-        />
-      ))}
-    </LabelGrid>
+    <>
+      {props.prefectures.length ? (
+        <LabelGrid>
+          {props.prefectures.map((prefecture) => (
+            <CheckboxWithLabel
+              prefCode={prefecture.prefCode}
+              changefunc={props.changefunc}
+              prefName={prefecture.prefName}
+            />
+          ))}
+        </LabelGrid>
+      ) : (
+        <span>をローディング中・・・</span>
+      )}
+    </>
   )
 }

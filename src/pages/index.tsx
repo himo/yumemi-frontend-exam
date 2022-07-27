@@ -7,7 +7,9 @@ import { Card } from '@/components/card'
 import { Padding } from '@/components/padding'
 import { RenderPrefecture } from '@/components/renderprefecture'
 const Home: NextPage = () => {
-  const { prefectures, getAxiosPrefecturesPopulation, options } = usePrefectureCharthooks()
+  const { prefectures, getAxiosPrefecturesPopulation, options, chartRef } =
+    usePrefectureCharthooks()
+
   return (
     <>
       <Center>
@@ -20,9 +22,9 @@ const Home: NextPage = () => {
                 prefectures={prefectures}
                 changefunc={getAxiosPrefecturesPopulation}
               />
-            </Padding>
-            <Padding>
-              <HighchartsReact highcharts={Highcharts} options={options} />
+              <Padding>
+                <HighchartsReact highcharts={Highcharts} options={options} ref={chartRef} />
+              </Padding>
             </Padding>
           </div>
         </Card>
