@@ -24,7 +24,6 @@ export const usePrefectureCharthooks = () => {
   const getAxiosPrefecturesPopulation = async (
     e: React.ChangeEvent<HTMLInputElement>,
   ): Promise<void> => {
-    chartRef.current?.chart.showLoading()
     const updatedPrefectures = await Promise.all(
       prefectures.map(async (x) => {
         if (e.currentTarget.value === String(x.prefCode)) {
@@ -39,6 +38,7 @@ export const usePrefectureCharthooks = () => {
   }
 
   const getPopulationFromApi = async (prefCode: number) => {
+    chartRef.current?.chart.showLoading()
     const response: AxiosResponse<prefectureAPIResponse> = await axios.get(
       '/api/populationPerYear/'.concat(String(prefCode)),
     )
