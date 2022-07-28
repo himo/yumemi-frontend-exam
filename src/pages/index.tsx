@@ -1,6 +1,6 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import { usePrefectureCharthooks } from '@/components/peges/hooks'
+import { usePrefectureCharthooks } from '@/components/pages/hooks'
 import { Center } from '@/components/center'
 import { Card } from '@/components/card'
 import { Padding } from '@/components/padding'

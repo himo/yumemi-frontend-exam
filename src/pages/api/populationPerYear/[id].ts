@@ -1,4 +1,4 @@
-import { getRESASApiResponseResult } from '@/components/peges/getRESASApiResponseResult'
+import { getRESASApiResponseResult } from '@/components/pages/getRESASApiResponseResult'
 import axios, { AxiosResponse } from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrefPopulation, RasasDataResponse } from '~/types'
