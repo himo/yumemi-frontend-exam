@@ -79,6 +79,10 @@ export const usePrefectureCharthooks = () => {
   }
 
   const options = {
+    accessibility: {
+      enabled: false,
+    },
+
     chart: {
       type: 'line',
     },

@@ -18,6 +18,7 @@ export const RenderPrefecture: FC<RenderPrefectureProps> = (props) => {
               prefCode={prefecture.prefCode}
               changefunc={props.changefunc}
               prefName={prefecture.prefName}
+              key={prefecture.prefName}
             />
           ))}
         </LabelGrid>

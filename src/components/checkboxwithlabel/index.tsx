@@ -9,7 +9,7 @@ type CheckboxWithLabelProps = {
 
 export const CheckboxWithLabel: FC<CheckboxWithLabelProps> = (props) => {
   return (
-    <label key={props.prefCode} className={styleCheckboxWithLabelProps.label}>
+    <label className={styleCheckboxWithLabelProps.label}>
       <input
         type="checkbox"
         className={styleCheckboxWithLabelProps.input}
