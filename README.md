@@ -1,34 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 課題ページ
 
-## Getting Started
+[https://yumemi-frontend-exam-steel.vercel.app/](https://www.youtube.com/watch?v=-4uA1P2RoZ0)
+## 課題の取り組みから完了までに要した合計時間
 
-First, run the development server:
+計 40 時間
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 課題にあたって特に工夫した点
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. APIKEY を完全に隠す点
+   最初は NEXT_PUBLIC を用いればいいと考えていたがそうではなかったため、API Routes を使用し、サーバー上で受け取ってもらったデータを返すことで実現。
+2. AxiosResponse の型
+   ジェネリクスを用いることで AxiosResponse の型を自分で定義したものにし、エラー処理まで行ってくれるある程度拡張性をもった仕組みをつくることができた。
+3. コメントについて
+   複雑なロジック、複雑な値にはコメントを使い初めてコードを読んだ人でも理解が早まるように工夫を行った。また、コメントにはなぜそのような仕組みにしたのかを、工夫した処理のところに書き残しておいた。(参考:リーダブルコード)
+4. Highchart に渡す series について
+   Highchart に渡す series は渡す配列を変えるのではなく、Highchart 側で処理を行い表示非表示を切り替えるようにした点(そのようにしないと処理の関係上想定していない動作を起こすため)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## これまでの総合的なプログラミング歴
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+**高校 1 年生**の**2016 年**から**自主的**にプログラミングを始めました。
+そのため総年数では 6 年になりますが、プログラミングを受験勉強などでやっていない期間もあるため実際には**期間**として**4 年程度**だと考えられます。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 開発したもの : なぜ作ったか
 
-## Learn More
+1. Minecraft の**アイテムを大きく表示**するもの(**5 万 DL**)([Youtube](https://www.youtube.com/watch?v=ywKL2NqP3lo))
+   アイテムが小さくてほしいアイテムが拾えなかったため。
+2. Minecraft の拡張機能(**2000DL**)([v1](https://www.youtube.com/watch?v=-4uA1P2RoZ0), [v2](https://www.youtube.com/watch?v=9lNNyCbY3Us), [v3](https://www.youtube.com/watch?v=V4uMt5pXkfc))
+   様々な情報を表示し有利に戦いたかったため。
+3. Minecraft の拡張機能(**ボタン**を**追加**し、**コマンドを登録**することができる)([Youtube](https://www.youtube.com/watch?v=GXKA_laCgts))
+   毎回コマンドをタイピングしている時間はないと考えたため。
+4. ffmpeg を**簡単に操作**できるように**GUI 化**
+   毎回コマンドを打つのが不便に感じたため
+5. 大学の**メールを通知**する**LINEbot**
+   メールを見逃してしまう事があったため
+6. **Youtube**の**音量**を**マウスホイール**で**1%単位**で変更できる**ChromeExtension**(**100+DL**)
+   Youtube は 1%単位で音量の調整を行うことができず不便だと考えたため
+7. カウントダウンを**デスクトップにオーバーレイ**するもの
+   そのカウントダウンがあればゲームの試合で便利になると考えたため
+8. **Ubuntu**で**サーバーを立て**ゲームのサーバーとして活用
+   友人と一緒に遊びたかったため
+9. **ラズパイ**を用いて部屋の**二酸化炭素濃度**を表示
+   コロナ禍でずっと部屋にいた際に、自身のパフォーマンスが低下したと感じ、換気のタイミングを知りたいと感じたため。
+10. **ラズパイ**やモータを用いて**玄関の鍵**を**スマートロック化**
+    鍵をなくす不安と鍵をバッグから出すのが不便に感じたため
 
-To learn more about Next.js, take a look at the following resources:
+## これまでの WEB フロントエンドプログラミング歴
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+フロントエンドの JavaScript を触り始めたのは 2020 年 7 月から初めました。
+しかしずっとフロントをやっていたわけではないため、HTML,CSS,JavaScript で開発を行った期間は**3~4 ヶ月**だと考えています。
+React の勉強を始めたのは**2022 年 1 月**から本のみで勉強はしていました。(りあクト！)
+実際に開発を始めたのは 2022 年**3 月**に入ったあたりですが、そこでもずっと開発を行っていたわけではないので実際に Next.js、TypeScript で開発を行っていた期間は**2 ヶ月ない**と考えます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 開発したもの : なぜ作ったか
 
-## Deploy on Vercel
+1. **ブラウザのみ**で動画を**8mb に圧縮**するサイト
+   Discord に動画をアップロードしたかったため
+2. **ブラウザのみ**で**動画をトリミング**するサイト
+   自分が録画した動画を簡単、手軽、瞬時にカットしたかったため
+3. **アルバイト**で使用した、受注に関しての**値段計算**サイト
+   毎回電卓を使って計算するのは不便なため
+4. **ブラウザのみ**で**画面共有**を行う事ができるサイト
+   友人と一緒に大会の観戦をしたかったため
+5. **ブラウザのみ**で**遠隔操作**を行うことができるサイト(**2021 技育展にて登壇**)
+   コロナ禍で友人に遠隔でパソコンの操作を教えることが多くなったため
+6. **ブラウザのみ**で**複数人の画面**を**一元に監視**することのできるサイト(**有料ライセンス**で**販売中**　**特許**に向けて現在も**開発中**)
+   父の会社でセミナーを行う際に必要なため。(ブラウザのみで画面共有の派生作品)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## なぜフロントエンド志望なのか
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+私は現在まで様々なものの開発を行ってきました。その中で自分の作ったものは環境であったり、使っているパソコン、ゲームに依存しているものが多く私の目標としている多くの人々に有意義な時間を提供すると言ったものには遠いなと感じておりました。しかし、Web ブラウザは環境、使っているパソコン、スマートフォンに依存せず多くの人々に一貫した 1 つのものを提供でき、私はその点に魅力を感じました。
+また、環境やパソコン、ゲームに依存しているものは前提のソフトのインストールや、エクスプローラーを用いてのファイル移動などを必要とし、その面倒臭さからサービスの利用を踏みとどまるユーザーが多いと体感しました。
+私は Web ブラウザを用いることで、ユーザーが踏みとどまっていたサービスの利用を促すような手助けを行い、利用者に有意義な時間を提供したいと考えているためフロントエンドエンジニアを志望しています。
