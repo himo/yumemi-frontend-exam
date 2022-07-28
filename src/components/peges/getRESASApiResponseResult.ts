@@ -1,6 +1,9 @@
-import { PrefectureAPIResponse } from '~/types'
+import { AxiosResponse } from 'axios'
+import { PrefectureAPIResponse, RasasDataResponse } from '~/types'
 
-export const getRESASApiResponseResult = <T>(res: any): PrefectureAPIResponse<T> => {
+export const getRESASApiResponseResult = <T>(
+  res: AxiosResponse<RasasDataResponse<T>>,
+): PrefectureAPIResponse<T> => {
   //RasasAPIのstutscodeが特殊なため、ここでエラー処理を自分で行う
   if (res.data === '400' || res.data.result === null) {
     return { message: 'パラメータが間違っています', result: undefined }
@@ -20,7 +23,7 @@ export const getRESASApiResponseResult = <T>(res: any): PrefectureAPIResponse<T>
         'APIキーが無効、またはURLが間違っている可能性があります。必要があれば管理者にお問い合わせください。',
       result: undefined,
     }
-  } else if ('message' in res.data && res.message != null) {
+  } else if ('message' in res.data && res.data.message != null) {
     return {
       message: 'APIキーの利用可能上限を超えました。期間をおいてまたお試しください',
       result: undefined,

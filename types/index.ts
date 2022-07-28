@@ -12,6 +12,12 @@ export type SeriesHighcharts = {
   showInLegend: boolean
 }
 
+export type RasasDataResponse<T> = {
+  statusCode?: string
+  message?: string | null
+  result?: T
+}
+
 export type PrefectureAPIResponse<T> = {
   message: string
   result: T | undefined
@@ -22,7 +28,7 @@ export type PrefectureAPIResponse<T> = {
 export type PrefName = {
   prefCode: number // 1
   prefName: string // 北海道
-}[]
+}
 
 export type PrefPopulation = {
   data: {

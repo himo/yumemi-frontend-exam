@@ -1,7 +1,7 @@
 import { getRESASApiResponseResult } from '@/components/peges/getRESASApiResponseResult'
 import axios, { AxiosResponse } from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrefPopulation } from '~/types'
+import { PrefPopulation, RasasDataResponse } from '~/types'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await axios
@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ),
       { headers: { 'X-API-KEY': process.env.API_KEY as string } },
     )
-    .then((response: AxiosResponse<PrefPopulation>) => {
+    .then((response: AxiosResponse<RasasDataResponse<PrefPopulation>>) => {
       const resultResponse = getRESASApiResponseResult<PrefPopulation>(response)
       res.status(200).json({ message: resultResponse.message, result: resultResponse.result })
     })

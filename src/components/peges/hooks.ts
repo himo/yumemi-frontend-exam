@@ -17,7 +17,7 @@ export const usePrefectureCharthooks = () => {
 
   useEffect(() => {
     const getAxiosPrefecturesData = async () => {
-      const response: AxiosResponse<PrefectureAPIResponse<PrefName>> = await axios.get(
+      const response: AxiosResponse<PrefectureAPIResponse<PrefName[]>> = await axios.get(
         '/api/prefectures',
       )
       if (response.data.message === 'success' && response.data.result) {
@@ -52,9 +52,9 @@ export const usePrefectureCharthooks = () => {
     const response: AxiosResponse<PrefectureAPIResponse<PrefPopulation>> = await axios.get(
       '/api/populationPerYear/'.concat(String(prefCode)),
     )
-    if (response.data.message === 'success' && response.data.result?.data[0].data) {
-      return [...response.data.result?.data[0].data] // [{ year: 1960, value: 1426606 },...]
-      //                                                     　　 [年]            [人]
+    if (response.data.message === 'success' && response.data.result) {
+      return [...(response.data.result.data[0].data ?? [])] // [{ year: 1960, value: 1426606 },...]
+      //                                            [年]           [人]
     } else {
       alert(response.data.message)
       return undefined
@@ -74,7 +74,7 @@ export const usePrefectureCharthooks = () => {
         showInLegend: x.selected ? true : false, //  filterで処理を行うとHighchatはseriesの上から順に処理を行うため、色、線が変わり、多くのグラフのアニメーションが表示される
       }),
     )
-    setValuesForHighcharts(chartIntoValue) //　{name: '北海道', data: [5039206,...], visible: true, showInLegend: true}
+    setValuesForHighcharts(chartIntoValue) // {name: '北海道', data: [5039206,...], visible: true, showInLegend: true}
     chartRef.current?.chart.hideLoading()
   }
 

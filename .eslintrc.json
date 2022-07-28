@@ -18,11 +18,12 @@
     "prettier",
     "plugin:prettier/recommended"
   ],
-  "@typescript-eslint/no-misused-promises": [
-    "error",
-    {
-      "checksVoidReturn": false
-    }
-  ],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ]
+  }
 }
