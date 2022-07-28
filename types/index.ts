@@ -1,8 +1,8 @@
-export type RasasDataResponse = {
+export type RasasDataResponse<T> = {
   statusCode?: string
   message?: string | null
   description?: string
-  result?: PrefecturesData[]
+  result?: T
 }
 
 export type SeriesHighcharts = {
@@ -19,7 +19,21 @@ export type PrefecturesData = {
   data?: { year: number; value: number }[]
 }
 
-export type prefectureAPIResponse = {
+export type PrefectureAPIResponse<T> = {
   message: string
-  result: any
+  result: T | undefined
 }
+
+export type PrefPopulation = {
+  data: {
+    data: {
+      year: number
+      value: number
+    }[]
+  }[]
+}
+
+export type PrefName = {
+  prefCode: number
+  prefName: string
+}[]

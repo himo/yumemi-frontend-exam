@@ -1,7 +1,13 @@
 import axios, { AxiosResponse } from 'axios'
 import HighchartsReact from 'highcharts-react-official'
 import { useEffect, useRef, useState } from 'react'
-import { SeriesHighcharts, PrefecturesData, prefectureAPIResponse } from '~/types'
+import {
+  SeriesHighcharts,
+  PrefecturesData,
+  PrefectureAPIResponse,
+  PrefPopulation,
+  PrefName,
+} from '~/types'
 
 export const usePrefectureCharthooks = () => {
   const [prefectures, setPrefectures] = useState<PrefecturesData[]>([])
@@ -11,8 +17,10 @@ export const usePrefectureCharthooks = () => {
 
   useEffect(() => {
     const getAxiosPrefecturesData = async () => {
-      const response: AxiosResponse<prefectureAPIResponse> = await axios.get('/api/prefectures')
-      if (response.data.message === 'success') {
+      const response: AxiosResponse<PrefectureAPIResponse<PrefName>> = await axios.get(
+        '/api/prefectures',
+      )
+      if (response.data.message === 'success' && response.data.result) {
         setPrefectures([...response.data.result])
       } else {
         alert(response.data.message)
@@ -39,11 +47,11 @@ export const usePrefectureCharthooks = () => {
 
   const getPopulationFromApi = async (prefCode: number) => {
     chartRef.current?.chart.showLoading()
-    const response: AxiosResponse<prefectureAPIResponse> = await axios.get(
+    const response: AxiosResponse<PrefectureAPIResponse<PrefPopulation>> = await axios.get(
       '/api/populationPerYear/'.concat(String(prefCode)),
     )
-    if (response.data.message === 'success') {
-      return [...response.data.result.data[0].data]
+    if (response.data.message === 'success' && response.data.result?.data[0].data) {
+      return [...response.data.result?.data[0].data]
     } else {
       alert(response.data.message)
       return undefined
