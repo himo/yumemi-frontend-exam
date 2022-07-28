@@ -1,6 +1,7 @@
 import { PrefectureAPIResponse } from '~/types'
 
 export const getRESASApiResponseResult = <T>(res: any): PrefectureAPIResponse<T> => {
+  //RasasAPIのstutscodeが特殊なため、ここでエラー処理を自分で行う
   if (res.data === '400' || res.data.result === null) {
     return { message: 'パラメータが間違っています', result: undefined }
   } else if (res.data === '404' || res.data.statusCode === '404') {
@@ -11,7 +12,7 @@ export const getRESASApiResponseResult = <T>(res: any): PrefectureAPIResponse<T>
     }
   } else if (res.data === '403' || res.data.statusCode === '403') {
     /*
-     *API詳細説明にはAPIキーがないとき、無効なときに出るとあるがそれ以外でも表示されることがあるためURLの間違いを追加
+     *API詳細説明にはAPIキーがないとき、無効なときに出るとあるがそれ以外でも表示されることがあるため"URLの間違い"を追加
      *例:https://opendata.resas-portal.go.jp/api/v1
      */
     return {

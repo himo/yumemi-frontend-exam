@@ -1,12 +1,12 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import type { NextPage } from 'next'
 import { usePrefectureCharthooks } from '@/components/peges/hooks'
 import { Center } from '@/components/center'
 import { Card } from '@/components/card'
 import { Padding } from '@/components/padding'
 import { RenderPrefecture } from '@/components/renderprefecture'
-const Home: NextPage = () => {
+
+const Home = () => {
   const { prefectures, getAxiosPrefecturesPopulation, options, chartRef } =
     usePrefectureCharthooks()
 

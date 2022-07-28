@@ -1,8 +1,9 @@
-@media (min-width: 500px) {
-  .center {
-    display: grid;
-    place-content: center;
-    margin-top: 2%;
-    margin-buttom: 2%;
-  }
+.label:hover {
+  cursor: pointer;
+  background: whitesmoke;
+  user-select: none;
+}
+.input {
+  cursor: pointer;
+  user-select: none;
 }

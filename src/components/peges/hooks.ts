@@ -21,7 +21,7 @@ export const usePrefectureCharthooks = () => {
         '/api/prefectures',
       )
       if (response.data.message === 'success' && response.data.result) {
-        setPrefectures([...response.data.result])
+        setPrefectures([...response.data.result]) // [{prefCode: 1, prefName: '北海道'}...]
       } else {
         alert(response.data.message)
       }
@@ -35,23 +35,26 @@ export const usePrefectureCharthooks = () => {
     const updatedPrefectures = await Promise.all(
       prefectures.map(async (x) => {
         if (e.currentTarget.value === String(x.prefCode)) {
-          x.data = x.data ?? (await getPopulationFromApi(x.prefCode))
-          x.data?.length ? (x.selected = e.target.checked) : (e.target.checked = !e.target.checked)
+          x.data = x.data ?? (await getAxiosPopulation(x.prefCode))
+          x.data?.length ? (x.selected = e.target.checked) : (e.target.checked = !e.target.checked) //エラーが発生し、dataが入っていない場合チェックを外す
         }
         return x
       }),
-    ).catch()
+    )
     renderHighCharts()
-    setPrefectures(updatedPrefectures)
+    setPrefectures(updatedPrefectures) //都道府県にチェックを入れたときその都道府県にselectedとdata要素を追加
+    //[{ prefCode: 1, prefName: '北海道', selected: true, data[{ year: 1960, value: 1426606 }] }...]
+    //                                                                 [年]            [人]
   }
 
-  const getPopulationFromApi = async (prefCode: number) => {
-    chartRef.current?.chart.showLoading()
+  const getAxiosPopulation = async (prefCode: number) => {
+    chartRef.current?.chart.showLoading() //Vercelと開発環境には、データの取得速度に差があるため、ローディング画面を表示したほうが良い
     const response: AxiosResponse<PrefectureAPIResponse<PrefPopulation>> = await axios.get(
       '/api/populationPerYear/'.concat(String(prefCode)),
     )
     if (response.data.message === 'success' && response.data.result?.data[0].data) {
-      return [...response.data.result?.data[0].data]
+      return [...response.data.result?.data[0].data] // [{ year: 1960, value: 1426606 },...]
+      //                                                     　　 [年]            [人]
     } else {
       alert(response.data.message)
       return undefined
@@ -59,18 +62,19 @@ export const usePrefectureCharthooks = () => {
   }
 
   const renderHighCharts = () => {
-    const x_AxisYears = prefectures.find((x) => x.data)?.data?.map((x) => x.year) ?? []
-    setX_AxisYears(x_AxisYears)
+    //Highchartsに渡すx軸を取得したいため、データの入ってるところからyearのみの配列を返す
+    const x_findAxisYears = prefectures.find((x) => x.data)?.data?.map((x) => x.year) ?? []
+    setX_AxisYears(x_findAxisYears) // [1960,...]
 
     const chartIntoValue = prefectures.map(
       (x: PrefecturesData): SeriesHighcharts => ({
         name: x.prefName,
         data: x.data?.map((x) => x.value) ?? [],
-        visible: x.selected ? true : false,
-        showInLegend: x.selected ? true : false,
+        visible: x.selected ? true : false, //       Highchat側で、表示するseriesの表示非表示を行ったほうが良い
+        showInLegend: x.selected ? true : false, //  filterで処理を行うとHighchatはseriesの上から順に処理を行うため、色、線が変わり、多くのグラフのアニメーションが表示される
       }),
     )
-    setValuesForHighcharts(chartIntoValue)
+    setValuesForHighcharts(chartIntoValue) //　{name: '北海道', data: [5039206,...], visible: true, showInLegend: true}
     chartRef.current?.chart.hideLoading()
   }
 
