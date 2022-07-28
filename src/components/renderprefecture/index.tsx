@@ -1,7 +1,9 @@
+import { CheckboxWithLabel } from '@/components/checkboxwithlabel'
+import { LabelGrid } from '@/components/labelgrid'
+
 import type { ChangeEventHandler, FC } from 'react'
+
 import { PrefecturesData } from '~/types'
-import { CheckboxWithLabel } from '../checkboxwithlabel'
-import { LabelGrid } from '../labelgrid'
 
 type RenderPrefectureProps = {
   prefectures: PrefecturesData[]

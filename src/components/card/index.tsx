@@ -1,5 +1,6 @@
-import type { FC } from 'react'
 import styleCard from './index.module.css'
+
+import type { FC } from 'react'
 
 type CardProps = {
   children?: React.ReactNode

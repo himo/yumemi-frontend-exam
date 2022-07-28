@@ -1,5 +1,6 @@
-import type { FC } from 'react'
 import styleLabelGrid from './index.module.css'
+
+import type { FC } from 'react'
 
 type LabelGridProps = {
   children?: React.ReactNode

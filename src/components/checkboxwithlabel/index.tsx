@@ -1,5 +1,6 @@
-import type { ChangeEventHandler, FC } from 'react'
 import styleCheckboxWithLabelProps from './index.module.css'
+
+import type { ChangeEventHandler, FC } from 'react'
 
 type CheckboxWithLabelProps = {
   prefCode: number

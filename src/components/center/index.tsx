@@ -1,5 +1,6 @@
-import type { FC } from 'react'
 import styleCenter from './index.module.css'
+
+import type { FC } from 'react'
 
 type CenterProps = {
   children?: React.ReactNode

@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import HighchartsReact from 'highcharts-react-official'
 import { useEffect, useRef, useState } from 'react'
+
 import {
   SeriesHighcharts,
   PrefecturesData,

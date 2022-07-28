@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios'
+
 import { PrefectureAPIResponse, RasasDataResponse } from '~/types'
 
 export const getRESASApiResponseResult = <T>(

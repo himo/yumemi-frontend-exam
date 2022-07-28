@@ -1,5 +1,6 @@
-import type { FC } from 'react'
 import stylePadding from './index.module.css'
+
+import type { FC } from 'react'
 
 type PaddingProps = {
   children?: React.ReactNode

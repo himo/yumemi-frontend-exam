@@ -1,6 +1,9 @@
-import { getRESASApiResponseResult } from '@/components/pages/getRESASApiResponseResult'
 import axios, { AxiosResponse } from 'axios'
+
+import { getRESASApiResponseResult } from '@/components/pages/getRESASApiResponseResult'
+
 import type { NextApiRequest, NextApiResponse } from 'next'
+
 import { PrefName, RasasDataResponse } from '~/types'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
